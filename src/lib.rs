@@ -235,7 +235,20 @@ mod tests {
     }
 
     #[test]
-    fn llsc_failed_store_not_visible_sync() {
+    fn llsc_failed_store_not_visible_sync_same_value() {
+        let llsc = LlscUsize::new(0);
+        for i in 0..3 {
+            let link = llsc.load_link();
+            assert_eq!(link.value(), i * 4);
+            llsc.store(i * 4);
+            assert!(!llsc.store_conditional(link, (i + 1) * 4));
+            assert_eq!(llsc.load(), i * 4);
+            llsc.store((i + 1) * 4);
+        }
+    }
+
+    #[test]
+    fn llsc_failed_store_not_visible_sync_different_value() {
         let llsc = LlscUsize::new(0);
         for i in 0..3 {
             let link = llsc.load_link();
