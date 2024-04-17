@@ -2,5 +2,11 @@
 name = "llsc"
 version = "0.1.0"
 edition = "2021"
+authors = ["Roee Shoshani"]
+description = "load-link/store-conditional implementation using atomics"
+repository = "https://github.com/roeeshoshani/llsc"
+license = "MIT"
+keywords = ["algorithms", "llsc", "atomics", "lockless", "concurrent"]
+categories = ["algorithms"]
 
 [dependencies]
